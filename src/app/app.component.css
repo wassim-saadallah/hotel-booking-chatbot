@@ -1,0 +1,21 @@
+.example-card {
+    max-width: 400px;
+    margin: auto;
+    padding : 50px 50px 0px 50px
+  }
+  
+  .example-header-image {
+    background-image: url('../assets/robot.png');
+    background-size: cover;
+    margin-right: 20px;
+    margin-top: 20px;
+  }
+  
+
+  .card-header{
+      margin-bottom: 10px;
+  }
+
+  .example-form-field {
+    width: 350px;
+  }
