@@ -1,12 +1,14 @@
 <mat-card class="example-card">
-  <mat-card-header *ngFor="let i of [2,3,4,5,6]" class="card">
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>User {{i}}</mat-card-title>
-    <mat-card-subtitle>Message {{i}} Message {{i}} Message {{i}} Message {{i}} Message {{i}} Message {{i}} Message
-      {{i}} Message {{i}} Message {{i}} Message {{i}}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-divider class="example-mat-divider"></mat-divider>
-  <mat-card-actions>
+  <div *ngFor="let m of messages" class="card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{m.from}}{{m.date | date:'shortTime'}}</mat-card-title>
+      <mat-card-subtitle>{{m.body}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-card-actions class="actions">
     <br>
     <mat-form-field class="example-form-field">
       <input matInput type="text" placeholder="Clearable input" [(ngModel)]="value">

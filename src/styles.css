@@ -2,8 +2,3 @@
 
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
-body{
-    background: url('assets/hotel.jpg') cover no-repeat;
-    /* filter: blur(5px) */
-}
