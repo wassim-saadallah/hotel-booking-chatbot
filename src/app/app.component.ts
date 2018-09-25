@@ -28,14 +28,15 @@ export class AppComponent {
       return
     let from = this.current;
     this.messages.push(new Chat('user', this.value, Date.now()));
-    this.value = '';
     this.messages.push(new Chat('bot', await this.chatBotResponse(this.value), Date.now()))
+    this.value = '';
   }
 
   async chatBotResponse(text : string) : Promise<string>{
+    console.log(text)
     const response = await this.client.textRequest(text)
     console.log(response)
-    return new Promise<string>(value => 'waaaaa')
+    return response.result.fulfillment.speech;
   }
 
 }
