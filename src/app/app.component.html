@@ -1,22 +1,28 @@
 <mat-card class="example-card">
-  <div *ngFor="let m of messages" class="card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{m.from}}{{m.date | date:'shortTime'}}</mat-card-title>
-      <mat-card-subtitle>{{m.body}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-divider></mat-divider>
+  <div style="text-align: center">
+    <img src="../assets/talan-logo.png" width="400px">
   </div>
   <mat-divider></mat-divider>
+  <div class="messages-container">
+    <div class="message" *ngFor="let m of messages">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{m.from}}{{m.date | date:'shortTime'}}</mat-card-title>
+        <mat-card-subtitle>{{m.body}}</mat-card-subtitle>
+      </mat-card-header>
+      <hr class="hr">
+    </div>
+  </div>
+  <hr style="padding:0">
   <mat-card-actions class="actions">
     <br>
     <mat-form-field class="example-form-field">
-      <input matInput type="text" placeholder="Clearable input" [(ngModel)]="value">
+      <input matInput type="text" placeholder="Send something" [(ngModel)]="value">
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
-    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Send" (click)="send()">
+    <button mat-button matSuffix mat-icon-button aria-label="Send" (click)="send()">
       <mat-icon>send</mat-icon>
     </button>
   </mat-card-actions>

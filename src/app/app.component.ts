@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Time } from '@angular/common';
+import { ApiAiClient } from "api-ai-javascript";
+import { clientConfig } from '../environments/environment'
 
-
-export class Chat{
-  constructor(private from: 'user' | 'bot', private body: string, private time: Date){
+export class Chat {
+  constructor(private from: 'user' | 'bot', private body: string, private time: number) {
   }
 }
 @Component({
@@ -12,19 +12,30 @@ export class Chat{
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  messages : Chat[];
-  current = 'bot';
-  value : string;
+  messages: Chat[];
+  current: 'user' | 'bot';
+  value: string;
+  client: ApiAiClient;
 
-  constructor(){
-    this.messages = [new Chat('bot', 'test', new Date())];
+  constructor() {
+    this.messages = [];
     this.value = "";
+    this.client = new ApiAiClient(clientConfig)
   }
 
-  send(){
+  async send() {
+    if (this.value.length == 0)
+      return
     let from = this.current;
-    this.current = this.current === 'bot' ? 'user' : 'bot';
-    this.messages.push(new Chat('bot', this.value, new Date()));
-    console.log(this.messages);
+    this.messages.push(new Chat('user', this.value, Date.now()));
+    this.value = '';
+    this.messages.push(new Chat('bot', await this.chatBotResponse(this.value), Date.now()))
   }
+
+  async chatBotResponse(text : string) : Promise<string>{
+    const response = await this.client.textRequest(text)
+    console.log(response)
+    return new Promise<string>(value => 'waaaaa')
+  }
+
 }

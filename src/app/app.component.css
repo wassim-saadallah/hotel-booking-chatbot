@@ -1,7 +1,9 @@
 .example-card {
-    max-width: 400px;
+    width: 400px;
     margin: auto auto;
-    padding : 20px 50px 0px 50px;
+    position: relative;
+    top: 20%;
+    /* margin : 20px 50px 0px 50px; */
     background: rgb(242, 246, 252)
   }
   
@@ -10,7 +12,7 @@
     background-size: cover;
     background-color: lightgray;
     margin-right: 20px;
-    margin-top: 20px;
+    
   }
 
   .example-form-field {
@@ -18,7 +20,18 @@
     margin-left: 20px
   }
 
-  .card{
+  .messages-container{
+    height: 350px;
+    overflow: auto;
+  }
+
+  .message{
     margin-bottom: 20px;
-    margin-top : 20px
+    margin-top : 20px;
+  }
+
+  .hr{
+    border: none;
+    height: 1px; 
+    background-color: rgba(0,0,0,.12)
   }
