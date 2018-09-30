@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 
 import { AppComponent } from './app.component';
+import { FileDropModule } from 'ngx-file-drop';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material';
@@ -35,14 +36,20 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { UploadFormComponent } from './upload-form/upload-form.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UploadFormComponent,
+  ],
+  entryComponents: [
+    UploadFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    FileDropModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
     MatCheckboxModule,

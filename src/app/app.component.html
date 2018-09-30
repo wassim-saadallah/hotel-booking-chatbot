@@ -18,7 +18,7 @@
     <br>
     <mat-form-field class="example-form-field">
       <input matInput type="text" placeholder="Send something" [(ngModel)]="value" (keyup.enter)="send()">
-      <button mat-button  *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
+      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value = ''">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
@@ -27,3 +27,4 @@
     </button>
   </mat-card-actions>
 </mat-card>
+

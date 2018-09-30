@@ -1,6 +1,8 @@
 import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { ApiAiClient } from "api-ai-javascript";
 import { clientConfig } from '../environments/environment'
+import { MatDialog } from '@angular/material';
+import { UploadFormComponent } from './upload-form/upload-form.component';
 
 export class Chat {
   constructor(private from: 'user' | 'bot', private body: string, private time: number) {
@@ -19,7 +21,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     this.messages = [];
     this.value = "";
     this.client = new ApiAiClient(clientConfig)
@@ -27,6 +29,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.scrollToBottom();
+    window.setTimeout(() => this.openDialog(), 2000);
   }
 
   ngAfterViewChecked() {
@@ -39,6 +42,17 @@ export class AppComponent implements OnInit, AfterViewChecked {
     } catch (err) { }
   }
 
+  openDialog(): void {
+    const dialogRef = this.dialog.open(UploadFormComponent, {
+      width: '75%',
+      height: '50%'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
   async send() {
     if (this.value.length == 0)
       return
@@ -47,7 +61,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
     this.value = '';
     this.messages.push(new Chat('user', body, Date.now()));
     this.messages.push(new Chat('bot', await this.chatBotResponse(body), Date.now()))
-    
+
   }
 
   async chatBotResponse(text: string): Promise<string> {
@@ -56,5 +70,8 @@ export class AppComponent implements OnInit, AfterViewChecked {
     console.log(response)
     return response.result.fulfillment.speech;
   }
+
+
+  
 
 }
